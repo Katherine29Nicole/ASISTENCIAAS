@@ -1,0 +1,42 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Detalle del docente</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Detalle del docente</h1>
+        <hr>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd th:text="${docente.id}"></dd>
+
+            <dt>Nombre</dt>
+            <dd th:text="${docente.nombre}"></dd>
+
+            <dt>Apellido</dt>
+            <dd th:text="${docente.apellido}"></dd>
+
+            <dt>Email</dt>
+            <dd th:text="${docente.email}"></dd>
+
+            <dt>Teléfono</dt>
+            <dd th:text="${docente.telefono}"></dd>
+
+            <dt>Escuela</dt>
+            <dd th:text="${docente.escuela}"></dd>
+        </dl>
+        <hr>
+        <div class="text-center">
+            <a th:href="@{/Docentes/edit/{id}(id=${docente.id})}" class="btn btn-outline-info">Editar</a>
+            <a th:href="@{/Docentes/remove/{id}(id=${docente.id})}" class="btn btn-outline-danger">Eliminar</a>
+            <a th:href="@{/Docentes}" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

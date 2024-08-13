@@ -1,0 +1,74 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Docentes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<div layout:fragment="content" class="container mt-4">
+    <div th:if="${msg != null}">
+        <script>
+            Swal.fire({
+            title:"Confirmación",
+            text: '[[ ${msg} ]]',
+            icon: "success"
+            });
+        </script>
+    </div>
+
+    <div th:if="${error != null}">
+        <script>
+            Swal.fire({
+            title:"Error",
+            text: '[[ ${error} ]]',
+            icon: "error"
+            });
+        </script>
+    </div>
+
+    <h1 class="mb-4">Docentes</h1>
+
+    <a th:href="@{/Docentes/create}" class="btn btn-primary mb-3">Crear nuevo docente</a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Escuela</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${docentes}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.nombre}"></td>
+            <td th:text="${item.apellido}"></td>
+            <td th:text="${item.email}"></td>
+            <td th:text="${item.telefono}"></td>
+            <td th:text="${item.escuela}"></td>
+            <td>
+                <a th:href="@{/Docentes/details/{id}(id=${item.id})}" class="btn btn-info btn-sm">Ver</a>
+                <a th:href="@{/Docentes/edit/{id}(id=${item.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/Docentes/remove/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav class="Page navegation example">
+        <ul class="pagination">
+            <li class="page-item" th:each="pageNumber : ${pageNumber}">
+                <a class="page-link" th:href="@{|/Docentes?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <a th:href="@{/}" class="btn btn-outline-primary">Volver al inicio</a>
+
+</div>
+
+</html>
