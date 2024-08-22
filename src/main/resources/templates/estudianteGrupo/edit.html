@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Editar Estudiante Grupo</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Editar Estudiante Grupo</h1>
+        <form th:action="@{/EstudianteGrupos/save}" th:object="${estudianteGrupo}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label for="estudiante">Estudiante</label>
+                <select class="form-control" id="estudiante" th:field="*{estudiante.id}" required>
+                    <option th:each="est : ${estudiantes}" th:value="${est.id}" th:text="${est.nombre}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="grupo">Grupo</label>
+                <select class="form-control" id="grupo" th:field="*{grupo.id}" required>
+                    <option th:each="grp : ${grupos}" th:value="${grp.id}" th:text="${grp.nombre}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="anio">Año</label>
+                <input type="number" class="form-control" id="anio" placeholder="Escriba el año del estudiante en el grupo" th:field="*{anio}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ciclo">Ciclo</label>
+                <input type="text" class="form-control" id="ciclo" placeholder="Escriba el ciclo del estudiante en el grupo" th:field="*{ciclo}" required>
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                <a th:href="@{/EstudianteGrupos}" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

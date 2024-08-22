@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Detalle del estudiante</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Detalle del estudiante</h1>
+        <hr>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd th:text="${estudiante.id}"></dd>
+
+            <dt>Nombre</dt>
+            <dd th:text="${estudiante.nombre}"></dd>
+
+            <dt>Email</dt>
+            <dd th:text="${estudiante.email}"></dd>
+
+            <dt>Pin</dt>
+            <dd th:text="${estudiante.pin}"></dd>
+        </dl>
+        <hr>
+        <div class="text-center">
+            <a th:href="@{/Estudiantes/edit/{id}(id=${estudiante.id})}" class="btn btn-outline-info">Editar</a>
+            <a th:href="@{/Estudiantes/remove/{id}(id=${estudiante.id})}" class="btn btn-outline-danger">Eliminar</a>
+            <a th:href="@{/Estudiantes}" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

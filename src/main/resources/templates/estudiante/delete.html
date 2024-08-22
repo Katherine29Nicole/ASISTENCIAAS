@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Estudiante</title>
+
+    <script>
+        function confirmDelete() {
+            return confirm("¿Está seguro que desea eliminar este estudiante? Esta acción no se puede deshacer.");
+        }
+    </script>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Eliminar Estudiante</h1>
+        <br>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd th:text="${estudiante.id}"></dd>
+
+            <dt>Nombre</dt>
+            <dd th:text="${estudiante.nombre}"></dd>
+
+            <dt>Email</dt>
+            <dd th:text="${estudiante.email}"></dd>
+
+            <dt>Pin</dt>
+            <dd th:text="${estudiante.pin}"></dd>
+        </dl>
+        <hr />
+        <form th:action="@{/Estudiantes/delete}" method="post" onsubmit="return confirmDelete();">
+            <input type="hidden" name="id" th:value="${estudiante.id}">
+            <div class="text-center">
+                <input type="submit" value="Eliminar" class="btn btn-danger">
+                <a th:href="@{/Estudiantes}" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Estudiante Grupo</title>
+    <script>
+        function confirmDelete() {
+            return confirm("¿Está seguro que desea eliminar este estudiante grupo? Esta acción no se puede deshacer.");
+        }
+    </script>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Eliminar Estudiante Grupo</h1>
+        <br>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd th:text="${estudianteGrupo.id}"></dd>
+
+            <dt>Estudiante</dt>
+            <dd th:text="${estudianteGrupo.estudiante.nombre}"></dd>
+
+            <dt>Grupo</dt>
+            <dd th:text="${estudianteGrupo.grupo.nombre}"></dd>
+
+            <dt>Año</dt>
+            <dd th:text="${estudianteGrupo.anio}"></dd>
+
+            <dt>Ciclo</dt>
+            <dd th:text="${estudianteGrupo.ciclo}"></dd>
+        </dl>
+        <hr />
+        <form th:action="@{/EstudianteGrupos/delete}" method="post" onsubmit="return confirmDelete();">
+            <input type="hidden" name="id" th:value="${estudianteGrupo.id}">
+            <div class="text-center">
+                <input type="submit" value="Eliminar" class="btn btn-danger">
+                <a th:href="@{/EstudianteGrupos}" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

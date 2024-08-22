@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Eliminar docenteGrupo grupo</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Eliminar docenteGrupo</h1>
+        <br>
+        <br>
+        <hr />
+        <p class="card-text"><strong>Id</strong> <span th:text="${docenteGrupo.id}"></span></p>
+        <p class="card-text"><strong>Docente</strong> <span th:text="${docenteGrupo.docente.nombre}"></span></p>
+        <p class="card-text"><strong>Anio</strong> <span th:text="${docenteGrupo.anio}"></span></p>
+        <p class="card-text"><strong>Ciclo</strong> <span th:text="${docenteGrupo.ciclo}"></span></p>
+        <hr />
+        <form th:action="@{/docenteGrupos/delete}" method="post" onsubmit="return confirmDelete();">
+            <input type="hidden" name="Id" th:value="${docenteGrupo.id}">
+            <div class="text-center">
+                <input type="submit" value="Eliminar" class="btn btn-outline-danger">
+                <a th:href="@{/docenteGrupos}" class="btn btn-outline-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

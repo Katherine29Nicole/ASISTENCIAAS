@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+<head>
+    <title>Editar Docente y Grupo</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Editar Docente y Grupo</h1>
+    <form th:action="@{/docenteGrupos/update}" th:object="${docenteGrupo}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Hidden fields for docente and grupo IDs -->
+        <input type="hidden" th:field="*{docente.id}" />
+        <input type="hidden" th:field="*{grupo.id}" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="docente">Docente</label>
+                    <select class="form-control" th:field="*{docente.id}" id="docente" required>
+                        <option th:each="docente : ${docentes}"
+                                th:value="${docente.id}"
+                                th:text="${docente.nombre}"
+                                th:selected="${docente.id == docenteGrupo.docente.id}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="grupo">Grupo</label>
+                    <select class="form-control" th:field="*{grupo.id}" id="grupo" required>
+                        <option th:each="grupo : ${grupos}"
+                                th:value="${grupo.id}"
+                                th:text="${grupo.nombre}"
+                                th:selected="${grupo.id == docenteGrupo.grupo.id}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="anio">Año</label>
+                    <input type="number" class="form-control" th:field="*{anio}" id="anio" placeholder="Escriba el año" required />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ciclo">Ciclo</label>
+                    <input type="text" class="form-control" th:field="*{ciclo}" id="ciclo" placeholder="Escriba el ciclo" required />
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/docenteGrupos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

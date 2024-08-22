@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+<head>
+    <title>Detalles de Docente y Grupo</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Detalles de DocenteGrupo</h1>
+    <div class="card-body">
+        <h5 class="card-title">Detalles del DocenteGrupo</h5>
+        <p class="card-text"><strong>Id</strong> <span th:text="${docenteGrupo.id}"></span></p>
+        <p class="card-text"><strong>Docente</strong> <span th:text="${docenteGrupo.docente.nombre}"></span></p>
+        <p class="card-text"><strong>Anio</strong> <span th:text="${docenteGrupo.anio}"></span></p>
+        <p class="card-text"><strong>Ciclo</strong> <span th:text="${docenteGrupo.ciclo}"></span></p>
+
+        <a th:href="@{/docenteGrupos/edit/{id}= (id=${docenteGrupo.id})}" class="btn btn-primary">Editar</a>
+        <a th:href="@{/docenteGrupos/remove/{id}= (id=${docenteGrupo.id})}" class="btn btn-danger">Eliminar</a>
+        <a th:href="@{/docenteGrupos}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+    </div>
+</div>
+</body>
+</html>

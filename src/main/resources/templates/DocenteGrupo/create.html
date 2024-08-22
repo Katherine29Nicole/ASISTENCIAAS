@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Crear nuevo DocenteGrupo</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Crear nuevo DocenteGrupo</h1>
+    <form th:action="@{/docenteGrupos/save}" th:object="${docenteGrupo}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="docente">Docente</label>
+                    <select class="form-control" name="docenteId" id="docente" required>
+                        <option th:each="docente : ${docentes}" th:value="${docente.id}" th:text="${docente.nombre}">Seleccionar Docente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="grupo">Grupo</label>
+                    <select class="form-control" name="grupoId" id="grupo" required>
+                        <option th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.nombre}">Seleccionar Docente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ciclo"> Ciclo</label>
+                    <input type="text" class="form-control" th:field="*{ciclo}" id="ciclo" placeholder="Escriba el ciclo" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="anio"> Anio</label>
+                    <input type="text" class="form-control" th:field="*{anio}" id="anio" placeholder="Escriba el anio" required>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/docenteGrupos}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+</body>

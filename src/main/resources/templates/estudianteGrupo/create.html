@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Layouts/_mainLayout">
+
+<head>
+    <title>Crear nuevo Estudiante Grupo</title>
+
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Crear nuevo Estudiante Grupo</h1>
+        <form th:action="@{/EstudianteGrupos/save}" th:object="${estudianteGrupo}" method="post">
+            <div class="form-group">
+                <label for="estudiante">Estudiante</label>
+                <select class="form-control" th:field="*{estudiante.id}" id="estudiante" required>
+                    <option value="" disabled selected>Seleccione un estudiante</option>
+                    <option th:each="estudiante : ${estudiantes}"
+                            th:value="${estudiante.id}"
+                            th:text="${estudiante.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="grupo">Grupo</label>
+                <select class="form-control" th:field="*{grupo.id}" id="grupo" required>
+                    <option value="" disabled selected>Seleccione un grupo</option>
+                    <option th:each="grupo : ${grupos}"
+                            th:value="${grupo.id}"
+                            th:text="${grupo.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="anio">Año</label>
+                <input type="number" class="form-control" th:field="*{anio}" id="anio" placeholder="Escriba el año" required />
+            </div>
+            <div class="form-group">
+                <label for="ciclo">Ciclo</label>
+                <input type="text" class="form-control" th:field="*{ciclo}" id="ciclo" placeholder="Escriba el ciclo" required />
+            </div>
+            <hr>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                <a th:href="@{/EstudianteGrupos}" class="btn btn-outline-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

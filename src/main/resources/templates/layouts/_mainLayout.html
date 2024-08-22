@@ -4,7 +4,7 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -177,7 +177,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <div sec:authorize="isAuthenticated()" class="small">
+                        <span class="text-light  d-block" sec:authentication="name" style="text-trnasform: uppercase;"></span>
+
+                    </div>
                 </div>
             </div>
 
@@ -228,6 +231,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 Simple Link
                                 <span class="right badge badge-danger">New</span>
                             </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/logout}" class="nav-link">
+                            <i class="nav-icon fas fa-sing-out-all"></i>
+                            <p>Cerrar Sesion</p>
                         </a>
                     </li>
                 </ul>
